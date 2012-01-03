@@ -49,6 +49,7 @@ function on_key_down(evt) {
     case 39: ++player_col; break; // right
     case 40: ++player_row; break; // down
   }
+  draw();
 };
 
 window.onload = function () {
@@ -68,7 +69,8 @@ window.onload = function () {
          ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
          ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
          ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#']];
-  setInterval(draw, 100);
+  draw();
+  // setInterval(draw, 100);
 };
 
 window.addEventListener('keydown', on_key_down, true);
