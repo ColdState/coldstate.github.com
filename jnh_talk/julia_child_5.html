@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Julia Child Canvas 5</title>
+<script type='text/javascript'>//<![CDATA[
+
+function draw_char(to_draw) {
+  c.save();
+
+  c.fillStyle = 'rgb(0, 0, 0)';
+  c.fillRect(0, 0, 100, 100);
+  c.fillStyle = 'rgb(0, 255, 0)';
+  c.scale(8, 8);
+  c.textAlign = 'center';
+  c.fillText(to_draw, 50/8, 50/8);
+
+  c.restore();
+};
+
+function draw() {
+  c.save();
+
+  // 100x100 pixel grid => a 32x32 pixel gride
+  c.scale(32 / 100, 32 / 100);
+
+  for (var row = 0; row < map.length; ++row) {
+    for (var col = 0; col < map[0].length; ++col) {
+      c.save();
+      c.translate(100 * row, 100 * col);
+      draw_char(map[row][col]);
+      c.restore();
+    }
+  }
+  {
+    c.save();
+    c.translate(100 * player_col, 100 * player_row);
+    draw_char('@');
+    c.restore();
+  }
+
+  c.restore();
+};
+
+function on_key_down(evt) {
+  c.clearRect(0, 0, 640, 480);
+  switch (evt.keyCode) {
+    case 37: --player_col; break; // left
+    case 38: --player_row; break; // up
+    case 39: ++player_col; break; // right
+    case 40: ++player_row; break; // down
+  }
+};
+
+window.onload = function () {
+  canvas = document.getElementById('thecanvas');
+  c = canvas.getContext('2d');
+  player_row = 4;
+  player_col = 5; 
+  map = [['#', '#', '#', '#', '#', '#', '#', '#', '#', '#'],
+         ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+         ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+         ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+         ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+         ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+         ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+         ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+         ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+         ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+         ['#', '.', '.', '.', '.', '.', '.', '.', '.', '#'],
+         ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#']];
+  setInterval(draw, 100);
+};
+
+window.addEventListener('keydown', on_key_down, true);
+//[[>
+</script>
+</head>
+<body>
+<p>
+Scale is like translate, it's part of the transform stack, and it can make things bigger or smaller.
+</p>
+<canvas id="thecanvas" width="640" height="480"/>
+</body>
+</html>
