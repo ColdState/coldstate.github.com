@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Julia Child Canvas 1</title>
+<script type='text/javascript'>//<![CDATA[
+window.onload = function() {
+
+var canvas = document.getElementById('thecanvas');
+var context = canvas.getContext('2d');
+context.beginPath();
+context.moveTo(0, 0);
+context.lineTo(100, 100);
+context.stroke();
+
+};//[[>
+</script>
+</head>
+<body>
+<p>
+2d vector graphcs libraries, specifications, and interfaces
+are not actually particularly different from one another.
+They all pay attention to one another,
+and they all draw from the same sources,
+and they are often implemented using the same underlying libraries
+or techniques.
+</p>
+<p>
+In vector graphics, the basic way to draw a thing is
+to build a path representing a shape,
+and then either stroke a brush along the sides of the shape,
+or fill the interior of the shape with paint.
+</p>
+<canvas id="thecanvas" width="640" height="480"/>
+
+</body>
+</html>
