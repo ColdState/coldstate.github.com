@@ -4,20 +4,26 @@
 <title>Julia Child Canvas 4</title>
 <script type='text/javascript'>//<![CDATA[
 
+function draw_char(to_draw) {
+  c.fillStyle = 'rgb(0, 0, 0)';
+  c.fillRect(0, 0, 100, 100);
+  c.fillStyle = 'rgb(0, 255, 0)';
+  c.fillText(to_draw, 50, 50);
+}
+
 function draw() {
   for (var row = 0; row < 3; ++row) {
     for (var col = 0; col < 3; ++col) {
       c.save();
       c.translate(100 * row, 100 * col);
-      c.fillStyle = 'rgb(0, 0, 0)';
-      c.fillRect(0, 0, 100, 100);
-      c.fillStyle = 'rgb(0, 255, 0)';
-      c.fillText(map[row][col], 50, 50);
+      draw_char(map[row][col]);
       c.restore();
     }
   }
-  c.fillStyle = 'rgb(0, 255, 0)';
-  c.fillText('@', player_x, player_y);
+    c.save();
+    c.translate(player_x, player_y);
+    draw_char('@');
+    c.restore();
 };
 
 function on_key_down(evt) {
@@ -54,6 +60,7 @@ Miscellaneous factoids:
 <li>The painter's algorithm is to draw far away things first and then near things.</li>
 <li>Some things, such as rectangles, text and images (that is, raster/pixel art), have special-purpose primitives.</li>
 </ul>
+(Those characters are really small, aren't they?).
 </p>
 <canvas id="thecanvas" width="640" height="480"/>
 </body>
