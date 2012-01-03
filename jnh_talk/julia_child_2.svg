@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+<script type="application/ecmascript">//<![CDATA[
+  function curvy(evt) {
+    var one = document.getElementById('one');
+    one.setAttribute('d', 'm 0 50 C 10 50 50 10 50 0 L 50 100 L 100 100 L 0 100');
+  }
+  function linear(evt) {
+    var one = document.getElementById('one');
+    one.setAttribute('d', 'm 0 50 L 10 50 L 50 10 L 50 0 L 50 100 L 100 100 L 0 100');
+  }
+//]]></script>
+
+  <path id="one"
+      stroke="black"
+      fill="none"
+      onmouseover="curvy(evt)"
+      onmouseout="linear(evt)"
+      d="m 0 50 L 10 50 L 50 10 L 50 0 L 50 100 L 100 100 L 0 100"
+  />
+</svg>

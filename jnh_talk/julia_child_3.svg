@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <symbol id="one">
+      <path d="m 0 50 C 10 50 50 10 50 0 L 50 100 L 100 100 L 0 100"/>
+    </symbol>
+    <symbol id="two">
+      <path d="m 0 50 C 50 0 100 50 0 100 L 100 100"/>
+    </symbol>
+  </defs>
+  <g stroke="black" fill="none">
+    <use xlink:href="#one" transform="translate(0, 0)"/>
+    <use xlink:href="#two" transform="translate(0, 100)"/>
+    <use xlink:href="#two" transform="translate(100, 0)"/>
+    <use xlink:href="#one" transform="translate(100, 100)"/>
+  </g>
+</svg>
