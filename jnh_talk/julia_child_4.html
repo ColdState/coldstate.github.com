@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Julia Child Canvas 4</title>
+<script type='text/javascript'>//<![CDATA[
+
+function draw() {
+  for (var row = 0; row < 3; ++row) {
+    for (var col = 0; col < 3; ++col) {
+      c.save();
+      c.translate(100 * row, 100 * col);
+      c.fillStyle = 'rgb(0, 0, 0)';
+      c.fillRect(0, 0, 100, 100);
+      c.fillStyle = 'rgb(0, 255, 0)';
+      c.fillText(map[row][col], 50, 50);
+      c.restore();
+    }
+  }
+  c.fillStyle = 'rgb(0, 255, 0)';
+  c.fillText('@', player_x, player_y);
+};
+
+function on_key_down(evt) {
+  c.clearRect(0, 0, 640, 480);
+  switch (evt.keyCode) {
+    case 37: player_x = player_x - 10; break; // left
+    case 38: player_y = player_y - 10; break; // up
+    case 39: player_x = player_x + 10; break; // right
+    case 40: player_y = player_y + 10; break; // down
+  }
+  draw();
+};
+
+window.onload = function () {
+  canvas = document.getElementById('thecanvas');
+  c = canvas.getContext('2d');
+  player_x = 100;
+  player_y = 100; 
+  map = [['#', '#', '#'],
+         ['#', '.', '#'],
+         ['#', '#', '#']];
+  draw();
+};
+
+window.addEventListener('keydown', on_key_down, true);
+
+//[[>
+</script>
+</head>
+<body>
+<p>
+Miscellaneous factoids:
+<ul>
+<li>The painter's algorithm is to draw far away things first and then near things.</li>
+<li>Some things, such as rectangles, text and images (that is, raster/pixel art), have special-purpose primitives.</li>
+</ul>
+</p>
+<canvas id="thecanvas" width="640" height="480"/>
+</body>
+</html>
