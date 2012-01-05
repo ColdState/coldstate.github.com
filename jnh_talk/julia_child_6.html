@@ -23,9 +23,9 @@ function addch(to_draw) {
     c.save();
     // the game uses row, col, but canvas uses x, y
     // row corresponds to y, col corresponds to x
-    c.translate(10 * cursor_col, 16 * cursor_row);
+    c.translate(8 * cursor_col, 16 * cursor_row);
     c.fillStyle = 'rgb(0, 255, 0)'; // green
-    c.fillText(to_draw, 5, 8);
+    c.fillText(to_draw, 4, 12);
     c.restore();
 };
 
@@ -35,17 +35,20 @@ function rand(min, max) {
 
 
 function on_key_down(evt) {
-    game.update(evt.keyCode);
-    c.fillStyle = 'rgb(0, 0, 0)'; // black
-    c.fillRect(0, 0, 640, 480);
-    game.draw();
+    if (evt.keyCode) {
+      game.update(evt.keyCode);
+      c.clearRect(0, 0, 640, 400); // does this speed things up?
+      c.fillStyle = 'rgb(0, 0, 0)'; // black
+      c.fillRect(0, 0, 640, 400);
+      game.draw();
+    }
 };
 
 function start(the_game_object) {
     game = the_game_object;
     game.setup();
     c.fillStyle = 'rgb(0, 0, 0)'; // black
-    c.fillRect(0, 0, 640, 480);
+    c.fillRect(0, 0, 640, 400);
     game.draw();  
     window.addEventListener('keydown', on_key_down, true);
 };
@@ -205,6 +208,6 @@ start(MonsterCave);
 </script>
 </head>
 <body>
-<canvas id="thecanvas" width="640" height="480"/>
+<canvas id="thecanvas" width="640" height="400"/>
 </body>
 </html>
