@@ -1,0 +1,38 @@
+void one(cairo_t* cr) {
+  cairo_new_path(cr);
+  cairo_move_to(cr, 0, 50);
+  cairo_curve_to(cr, 10, 50, 50, 10, 50, 0);
+  cairo_line_to(cr, 50, 100);
+  cairo_line_to(cr, 100, 100);
+  cairo_line_to(cr, 0, 100);
+  cairo_set_source_rgb(cr, 0, 0, 0); // black
+  cairo_stroke(cr);
+}
+
+void two(cairo_t* cr) {
+  cairo_new_path(cr);
+  cairo_move_to(cr, 0, 50);
+  cairo_curve_to(cr, 50, 0, 100, 50, 0, 100);
+  cairo_line_to(cr, 100, 100);
+  cairo_set_source_rgb(cr, 0, 0, 0); // black
+  cairo_stroke(cr);
+}
+
+void tiles(cr) {
+  char map[2][2] = {
+    { '1', '2' }
+    { '2', '1' }
+  };
+  for (int row = 0; row < 2; ++row) {
+      for (int col = 0; col < 2; ++col) {
+      	  cairo_save(cr);
+	  cairo_translate(cr, 100 * row, 100 * col);
+	  switch (map[row][col]) {
+	    case '1': one(cr); break;
+	    case '2': two(cr); break;
+          }
+          cairo_restore(cr);
+      }
+  }
+}
+
